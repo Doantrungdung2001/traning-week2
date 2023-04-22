@@ -21,7 +21,7 @@ interface ERC20 {
 contract NodeToken is ERC20 {
     string public name;
     string public symbol;
-    string public decimals;
+    uint256 public decimals;
     uint256 public _totalSupply;
 
     mapping(address => uint256) balances;
