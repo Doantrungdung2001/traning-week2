@@ -31,8 +31,8 @@ contract NodeToken is ERC20 {
         name = "Node Coin";
         decimals = 18;
         _totalSupply = 1_000_001_000_000_000_000_000_000; // A million + 1 coins, with 18 zeros for decimal points
-        balances[YOUR_WALLET_ADDRESS] =  _totalSupply;
-        emit Transfer(address(0), YOUR_WALLET_ADDRESS, _totalSupply);
+        balances[0x23e59AFC03C76d2bC96a7d36cDE3003a159f1c6f] =  _totalSupply;
+        emit Transfer(address(0), 0x23e59AFC03C76d2bC96a7d36cDE3003a159f1c6f, _totalSupply);
     } 
 
    
