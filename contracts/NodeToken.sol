@@ -16,6 +16,8 @@ interface ERC20 {
     event Transfer(address indexed from, address indexed to, uint256 value);
     event Approval(address indexed owner, address indexed spender, uint256 value);
 }
+
+// contract
 contract NodeToken is ERC20 {
     string public name;
     string public symbol;
