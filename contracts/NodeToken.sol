@@ -49,6 +49,7 @@ contract NodeToken is ERC20 {
     }
 
     function transfer(address recipient, uint256 amount) external override returns (bool) {
+        require(amount <= balances[msg.sender]);
         balances[msg.sender] = balances[msg.sender] - amount;
         balances[recipient] = balances[recipient] + amount;
         emit Transfer(msg.sender, recipient, amount);
@@ -62,6 +63,8 @@ contract NodeToken is ERC20 {
     }
 
     function transferFrom(address sender, address recipient, uint256 amount) external override returns (bool) {
+        require(amount <= balances[sender]);
+        require(amount <= allowed[sender][msg.sender]);
         balances[msg.sender] = balances[msg.sender] - amount;
         allowed[sender][msg.sender] = allowed[sender][msg.sender] - amount;
         balances[recipient] = balances[recipient] + amount;
