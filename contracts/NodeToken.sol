@@ -11,8 +11,9 @@ interface ERC20 {
     function transfer(address recipient, uint256 amount) external returns (bool);
     function approve(address spender, uint256 amount) external returns (bool);
     function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
+    function burn(uint256 _value) external returns (bool);
 
-
+    event Burn(address indexed from, uint256 value);
     event Transfer(address indexed from, address indexed to, uint256 value);
     event Approval(address indexed owner, address indexed spender, uint256 value);
 }
@@ -62,6 +63,13 @@ contract NodeToken is ERC20 {
         return true;
     }
 
+    function burn(uint256 _value) external returns (bool){
+        require(balances[msg.sender] >= _value, "Insufficient balance");
+        balances[msg.sender] -= _value;
+        _totalSupply -= _value;
+        emit Burn(msg.sender, _value);
+        return true;
+    }
     function transferFrom(address sender, address recipient, uint256 amount) external override returns (bool) {
         require(amount <= balances[sender]);
         require(amount <= allowed[sender][msg.sender]);
