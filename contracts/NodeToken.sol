@@ -21,10 +21,10 @@ interface ERC20 {
 
 // contract
 contract NodeToken is ERC20 {
-    string public name;
-    string public symbol;
-    uint256 public decimals;
-    uint256 public _totalSupply;
+    string private name;
+    string private symbol;
+    uint256 private decimals;
+    uint256 private _totalSupply;
 
     mapping(address => uint256) balances;
     mapping(address => mapping(address => uint256)) allowed;
